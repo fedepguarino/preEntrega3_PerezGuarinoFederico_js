@@ -1,4 +1,5 @@
 // PRODUCTOS
+let procuctos = []
 const productos = [
     // Calzado
     {
@@ -201,7 +202,7 @@ function cargarProductos(productosElegidos){
 
     productosElegidos.forEach(producto =>{
 
-        const div = document.createElement("div")
+        const div = document.createElement("div");
         div.classList.add("producto");
         div.innerHTML = `
             <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
@@ -249,7 +250,18 @@ function actualizarBotonesAgregar(){
     });
 }
 
-const productosEnCarrito = [];
+let productosEnCarrito;
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+
+
+if(productosEnCarritoLS){
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+}else{
+    productosEnCarrito = [];
+}
+
 
 function agregarAlCarrito(e){
 
